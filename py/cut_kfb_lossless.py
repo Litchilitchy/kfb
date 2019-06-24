@@ -145,12 +145,14 @@ def cut_one_image(src, dst, start_x, start_y, w, h, thr_idx):
     end_yy = (thr_idx + 1) * (ww // num_thr)
     start_xx = start_x
 
-
     if w * h > limit_size:
         # print("splited img")
-        split_x = h // 2
-        cut_one_image(src, dst, start_x, start_y, w, split_x, thr_idx)
-        cut_one_image(src, dst, start_x + split_x, start_y, w, split_x,thr_idx)
+        split_x = (h // 2) - (h // 2) % (piece_size * overlap)
+        last_end = int(split_x + piece_size * overlap)
+        next_start = int(split_x)
+
+        cut_one_image(src, dst, start_x, start_y, w, last_end, thr_idx)
+        cut_one_image(src, dst, start_x + next_start, start_y, w, next_start, thr_idx)
 
     else:
         print("start x, y  --> ", start_x, start_y)
@@ -276,7 +278,7 @@ def get_multi_thr_inf(w, h):
         if thr_idx < num_thr - 1:
             next_start_y = old_cut - old_cut % piece_size
         else:
-            next_start_y = w - overlap * piece_size # to supplement later minus
+            next_start_y = w - overlap * piece_size  # to supplement later minus
 
         # print("start and end y is  ", start_y, next_start_y + overlap * piece_size)
         # print("overlap * piece is ",overlap, piece_size, overlap * piece_size)
@@ -351,10 +353,13 @@ if __name__ == '__main__':
         pieces, y_list = get_multi_thr_inf(w, h)
         print(y_list)
 
+        '''
+        overlap need to be refine if not 0.5
+        '''
         image_per_piece_row = (w // (image_size * overlap)) - 1
-        image_per_piece_col = (h // pieces // (image_size * overlap)) - 1
+        image_per_piece_col = (h // (image_size * overlap)) - 1
         image_count = int(image_per_piece_row
-                          * image_per_piece_col * pieces)
+                          * image_per_piece_col)
 
 
         print("per row and col", image_per_piece_col,
