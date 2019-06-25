@@ -7,7 +7,7 @@
 * Redis
 
 ## Steps to run
-start redis
+start redis `docker run --name test-redis -p 6379:6379 -d redis`
 
 `python py/monitor.py` to prepare for output
 
