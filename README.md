@@ -7,6 +7,10 @@
 * Redis
 
 ## Steps to run
+First get the machine ready
+
+`systemctl start docker.service`
+
 start redis `docker run --name test-redis -p 6379:6379 -d redis`
 
 `python py/monitor.py` to prepare for output
