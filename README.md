@@ -11,7 +11,7 @@ First get the machine ready
 
 `systemctl start docker.service`
 
-start redis `docker run --name test-redis -p 6379:6379 -d redis`
+start redis `docker run --name test-redis -p 6379:6379 -d redis`, if it is in history, then use `docker history ls -a` get corresponding container id and `docker start ${id}`
 
 `python py/monitor.py` to prepare for output
 
