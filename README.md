@@ -22,3 +22,5 @@ start redis `docker run --name test-redis -p 6379:6379 -d redis`, if it is in hi
 ## Issue notes
 * Thread limit: for 16 threads cutting image error, reduce thread number to 8, this may due to `ReadRoiData` limitation of `.so` code
 
+* use `python3` to run cut-image and `python` to run monitor, may due to python 2 & 3 incompatibility of unicode
+
