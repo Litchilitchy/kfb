@@ -24,3 +24,4 @@ start redis `docker run --name test-redis -p 6379:6379 -d redis`, if it is in hi
 
 * use `python3` to run cut-image and `python` to run monitor, may due to python 2 & 3 incompatibility of unicode
 
+* Do not do things to `batchDF`, according to discovered issues, use `batchDF.isEmpty` will lead to missing of some data, use `batchDF.collect()` or `batchDF.count()` will lead to disappear of this DataFrame
