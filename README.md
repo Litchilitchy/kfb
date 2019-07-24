@@ -26,4 +26,4 @@ start redis `docker run --name test-redis -p 6379:6379 -d redis`, if it is in hi
 
 * Do not do things to `batchDF`, according to discovered issues, use `batchDF.isEmpty` will lead to missing of some data, use `batchDF.collect()` or `batchDF.count()` will lead to disappear of this DataFrame
 
-* Redis issue: the records in Redis may be limited, so if the consumer has small bandwidth, then the producer should control the average bandwidth. e.g. limit the kfb images to 3 in once cut. (If the cut process generate images of 10 kfb and the consumer could not consume as soon as possible then Redis might crashs)
+* Redis issue: the records in Redis may be limited, so if the consumer has small bandwidth, then the producer should control the average bandwidth. e.g. limit the kfb images to 3 in once cut. (If the cut process generate images of 10 kfb and the consumer could not consume as soon as possible then Redis might crashs). For more details of this issue, see https://stackoverflow.com/questions/19581059/misconf-redis-is-configured-to-save-rdb-snapshots
