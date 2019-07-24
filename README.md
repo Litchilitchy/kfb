@@ -13,11 +13,11 @@ First get the machine ready
 
 start redis `docker run --name test-redis -p 6379:6379 -d redis`, if it is in history, then use `docker container ls -a` get corresponding container id and `docker start ${id}`
 
-`python py/monitor.py` to prepare for output
+* monitor: `python py/monitor.py --file_path $ResultPath` to prepare for output
 
-`spark-submit --class com.intel... --modelPath ...` to start streaming
+* zoo-streaming: `spark-submit --class com.intel... --modelPath ... -o $ResultPath` to start streaming (note this $ResultPath must match the one of monitor above)
 
-`python py/cut_kfb_image.py` to cut KFB image into pieces
+* cut image: `python py/cut_kfb_image.py` to cut KFB image into pieces
 
 ## Issue notes
 * Thread limit: for 16 threads cutting image error, reduce thread number to 8, this may due to `ReadRoiData` limitation of `.so` code
