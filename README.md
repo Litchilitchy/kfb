@@ -2,7 +2,7 @@
 
 ## Prerequisites
 * Analytics zoo
-* cpp (kfbReader, etc) provided, add the directory of `.so` to `ld.so.conf.d/kfb.conf` (name of `kfb.conf` does not matter)
+* cpp (kfbReader, etc) provided, add the directory of `.so` to `/etc/ld.so.conf.d/kfb.conf` (name of `kfb.conf` does not matter)
 * Spark 2.4.3 +
 * Redis
 
